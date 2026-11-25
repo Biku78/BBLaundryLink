@@ -25,7 +25,7 @@ func UserSeeder() error {
 		return err
 	}
 
-	// Check existing user
+	// Check existing user to check or present or not
 	if count > 0 {
 		fmt.Println("User already exists:", email)
 		return nil
