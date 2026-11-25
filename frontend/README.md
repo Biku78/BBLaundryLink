@@ -1,16 +1,44 @@
-# React + Vite
+# BB LaundryLink frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Development
 
-Currently, two official plugins are available:
+```sh
+npm install
+npm run dev
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Structure
 
-## React Compiler
+- `src/main.jsx`: Redux `Provider` → `BrowserRouter` → `App` (inside StrictMode).
+- `src/App.jsx`: application routes (`/` homepage, `*` not-found page).
+- `src/pages/HomePage.jsx`: marketplace homepage.
+- `src/app/store.js`: Redux Toolkit store and RTK Query middleware/listeners.
+- `src/features/filters/filtersSlice.js`: shared search and service filter state.
+- `src/services/api.js`: RTK Query API and generated hooks.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## API usage
 
-## Expanding the ESLint configuration
+The existing Go server exposes `GET /api/health` and `POST /api/login` on port 6060. Vite proxies relative `/api` requests to it, so the browser never needs to call localhost directly. Run the Go backend with its database/environment configured to use these endpoints.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```jsx
+import { useGetHealthQuery, useLoginMutation } from './services/api'
+
+// Inside a component:
+const { data, isLoading, error } = useGetHealthQuery()
+const [login, { isLoading: isLoggingIn }] = useLoginMutation()
+// In an async submit handler (handle errors with try/catch):
+// const response = await login({ email, password }).unwrap()
+```
+
+Hooks are prepared for the existing endpoints; homepage login/register dialogs remain previews. No automatic login or health request runs on homepage load. Laundry cards remain sample data because the backend has no partner endpoint yet.
+
+By default the API base URL is `/api/`. To use a different deployment, set `VITE_API_BASE_URL` to a base URL ending in `/` before building. Cross-origin deployments need backend CORS configured. Never put secrets in Vite variables.
+
+Production hosting must serve the app's `index.html` for client-side routes (SPA fallback), and proxy `/api` to the backend unless a custom API base URL is set.
+
+## Checks
+
+```sh
+npm run build
+npm run lint
+```
