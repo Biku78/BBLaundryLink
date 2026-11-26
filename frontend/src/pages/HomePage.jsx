@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { logout } from '../features/auth/authSlice'
+import { api } from '../services/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearFilters, setQuery, setService } from '../features/filters/filtersSlice'
 
@@ -30,6 +33,7 @@ function HomePage() {
   const [area, setArea] = useState('')
   const { query, service } = useSelector(state => state.filters)
   const dispatch = useDispatch()
+  const user = useSelector(state => state.auth.user)
   const [dialog, setDialog] = useState(null)
   const [menu, setMenu] = useState(false)
   const filtered = partners.filter(p => (!service || p.services.includes(service)) && `${p.name} ${p.area} bhubaneswar`.toLowerCase().includes(query.toLowerCase()))
@@ -41,7 +45,7 @@ function HomePage() {
       <nav className={menu ? 'navigation open' : 'navigation'} aria-label="Main navigation">
         <a className="active" href="#home" onClick={() => setMenu(false)}><Icon name="home" size={18}/> Home</a><a href="#partners">Find Laundry⌄</a><button onClick={() => setDialog({ type: 'how' })}>How It Works</button><a href="#partners">Our Partners</a><button onClick={() => setDialog({ type: 'about' })}>About Us</button><a href="mailto:support@bblaundrylink.com">Contact</a>
       </nav>
-      <div className="account"><button className="bell" aria-label="Notifications" onClick={() => setDialog({ type: 'notifications' })}><Icon name="bell"/></button><button className="outline" onClick={() => setDialog({ type: 'Login' })}><Icon name="user" size={18}/> Login</button><button className="orange" onClick={() => setDialog({ type: 'Register' })}><Icon name="user" size={18}/> Register</button></div>
+      <div className="account"><button className="bell" aria-label="Notifications" onClick={() => setDialog({ type: 'notifications' })}><Icon name="bell"/></button>{user ? <><span className="account-name">Hi, {user.Name || user.name || 'there'}</span><button className="outline" onClick={() => { dispatch(logout()); dispatch(api.util.resetApiState()) }}>Logout</button></> : <><Link className="outline" to="/login"><Icon name="user" size={18}/> Login</Link><Link className="orange" to="/register"><Icon name="user" size={18}/> Register</Link></>}</div>
     </header>
     <main>
       <section className="hero" id="home">
@@ -60,7 +64,7 @@ function HomePage() {
     </main>
     <footer>{[['support','24/7 Support',"We're always here to help"],['shield','Secure & Reliable','Your trust, our priority'],['user','Trusted Community','Thousands of happy users'],['truck','Grow Together','For a cleaner, fresher city']].map(([icon,title,text]) => <div className="footer-item" key={title}><Icon name={icon} size={43}/><div><h3>{title}</h3><p>{text}</p></div></div>)}</footer>
     {dialog && <div className="modal-backdrop" onClick={() => setDialog(null)}><section className="modal" role="dialog" aria-modal="true" aria-label={dialog.partner?.name || dialog.type} onClick={e => e.stopPropagation()}><button autoFocus className="close" aria-label="Close dialog" onClick={() => setDialog(null)}>×</button>
-      {dialog.type === 'partner' ? <><img className="modal-shop" src={`/images/${dialog.partner.id}.webp`} alt={dialog.partner.name}/><h2>{dialog.partner.name}</h2><p>{dialog.partner.area} · ★ {dialog.partner.rating}</p><h3>From ₹{dialog.partner.price}/kg</h3><p>{dialog.partner.services.join(' · ')}</p><p className="notice">This is a homepage preview. Live availability and booking will be available when the booking service is connected.</p></> : ['Login','Register'].includes(dialog.type) ? <><h2>{dialog.type === 'Login' ? 'Welcome back!' : 'Join BB LaundryLink'}</h2><p>Fresh clothes are just a few clicks away.</p><p className="notice">{dialog.type} is not connected yet. Account access will be available once authentication is set up.</p></> : dialog.type === 'how' ? <><h2>Fresh laundry in 3 easy steps</h2><ol><li>Find a laundry partner in your area.</li><li>Compare services, prices, and ratings.</li><li>Choose your service and arrange a pickup.</li></ol></> : dialog.type === 'about' ? <><h2>Your laundry, our priority.</h2><p>BB LaundryLink helps you discover and compare local laundry partners — all in one place, with clear prices and convenient services.</p></> : <><h2>You're all caught up</h2><p>Your booking updates will appear here.</p></>}
+      {dialog.type === 'partner' ? <><img className="modal-shop" src={`/images/${dialog.partner.id}.webp`} alt={dialog.partner.name}/><h2>{dialog.partner.name}</h2><p>{dialog.partner.area} · ★ {dialog.partner.rating}</p><h3>From ₹{dialog.partner.price}/kg</h3><p>{dialog.partner.services.join(' · ')}</p><p className="notice">This is a homepage preview. Live availability and booking will be available when the booking service is connected.</p></> : dialog.type === 'how' ? <><h2>Fresh laundry in 3 easy steps</h2><ol><li>Find a laundry partner in your area.</li><li>Compare services, prices, and ratings.</li><li>Choose your service and arrange a pickup.</li></ol></> : dialog.type === 'about' ? <><h2>Your laundry, our priority.</h2><p>BB LaundryLink helps you discover and compare local laundry partners — all in one place, with clear prices and convenient services.</p></> : <><h2>You're all caught up</h2><p>Your booking updates will appear here.</p></>}
     </section></div>}
   </>
 }

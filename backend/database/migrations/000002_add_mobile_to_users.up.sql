@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN mobile VARCHAR(10) NULL AFTER email;
