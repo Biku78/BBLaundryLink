@@ -4,6 +4,11 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      scss: { quietDeps: true, silenceDeprecations: ['import'] },
+    },
+  },
   server: {
     host: '0.0.0.0',
     allowedHosts: ['.e2b.app'],
