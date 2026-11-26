@@ -40,6 +40,15 @@ By default the API base URL is `/api/`. To use a different deployment, set `VITE
 
 Production hosting must serve the app's `index.html` for client-side routes (SPA fallback), and proxy `/api` to the backend unless a custom API base URL is set.
 
+## Customer dashboard
+
+- `/dashboard`: customer dashboard; requires an authenticated Redux user. Successful login now redirects here.
+- `/dashboard/preview`: public design preview using the name Guest; it grants no account access.
+- Search partner names/neighborhoods, filter services, toggle session-only favorites, and navigate sidebar panels.
+- Profile uses the signed-in user's actual name/email. Logout clears Redux credentials and RTK Query cache.
+- Listings, tracking, and offers are explicitly sample content. Wallet balance is unavailable, not a fabricated real balance. No booking, payment, wallet, notification, or order-tracking endpoints exist yet.
+- The dashboard is responsive: mobile uses a dismissible navigation drawer and stacked widgets.
+
 ## Customer registration
 
 Apply **both** SQL up migrations in `backend/database/migrations` in order. Existing databases specifically need `000002_add_mobile_to_users.up.sql`; otherwise registration cannot insert the mobile number. The new column is nullable so existing seeded accounts are unaffected.

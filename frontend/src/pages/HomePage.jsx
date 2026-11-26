@@ -45,7 +45,7 @@ function HomePage() {
       <nav className={menu ? 'navigation open' : 'navigation'} aria-label="Main navigation">
         <a className="active" href="#home" onClick={() => setMenu(false)}><Icon name="home" size={18}/> Home</a><a href="#partners">Find Laundry⌄</a><button onClick={() => setDialog({ type: 'how' })}>How It Works</button><a href="#partners">Our Partners</a><button onClick={() => setDialog({ type: 'about' })}>About Us</button><a href="mailto:support@bblaundrylink.com">Contact</a>
       </nav>
-      <div className="account"><button className="bell" aria-label="Notifications" onClick={() => setDialog({ type: 'notifications' })}><Icon name="bell"/></button>{user ? <><span className="account-name">Hi, {user.Name || user.name || 'there'}</span><button className="outline" onClick={() => { dispatch(logout()); dispatch(api.util.resetApiState()) }}>Logout</button></> : <><Link className="outline" to="/login"><Icon name="user" size={18}/> Login</Link><Link className="orange" to="/register"><Icon name="user" size={18}/> Register</Link></>}</div>
+      <div className="account"><button className="bell" aria-label="Notifications" onClick={() => setDialog({ type: 'notifications' })}><Icon name="bell"/></button>{user ? <><Link className="account-name" to="/dashboard">Hi, {user.Name || user.name || 'there'}</Link><button className="outline" onClick={() => { dispatch(logout()); dispatch(api.util.resetApiState()) }}>Logout</button></> : <><Link className="outline" to="/login"><Icon name="user" size={18}/> Login</Link><Link className="orange" to="/register"><Icon name="user" size={18}/> Register</Link></>}</div>
     </header>
     <main>
       <section className="hero" id="home">
