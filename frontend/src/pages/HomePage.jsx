@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { sortPartners } from '../utils/sortPartners'
 import { Link } from 'react-router-dom'
 import { logout } from '../features/auth/authSlice'
 import { api } from '../services/api'
@@ -31,12 +32,13 @@ function Icon({ name, size = 24 }) {
 }
 function HomePage() {
   const [area, setArea] = useState('')
+  const [sort, setSort] = useState('recommended')
   const { query, service } = useSelector(state => state.filters)
   const dispatch = useDispatch()
   const user = useSelector(state => state.auth.user)
   const [dialog, setDialog] = useState(null)
   const [menu, setMenu] = useState(false)
-  const filtered = partners.filter(p => (!service || p.services.includes(service)) && `${p.name} ${p.area} bhubaneswar`.toLowerCase().includes(query.toLowerCase()))
+  const filtered = sortPartners(partners.filter(p => (!service || p.services.includes(service)) && `${p.name} ${p.area} bhubaneswar`.toLowerCase().includes(query.toLowerCase())), sort)
   function search(e) { e.preventDefault(); dispatch(setQuery(area.trim())); document.getElementById('partners').scrollIntoView({ behavior: 'smooth' }) }
   return <>
     <header className="header">
@@ -47,7 +49,7 @@ function HomePage() {
       </nav>
       <div className="account"><button className="bell" aria-label="Notifications" onClick={() => setDialog({ type: 'notifications' })}><Icon name="bell"/></button>{user ? <><Link className="account-name" to="/dashboard">Hi, {user.Name || user.name || 'there'}</Link><button className="outline" onClick={() => { dispatch(logout()); dispatch(api.util.resetApiState()) }}>Logout</button></> : <><Link className="outline" to="/login"><Icon name="user" size={18}/> Login</Link><Link className="orange" to="/register"><Icon name="user" size={18}/> Register</Link></>}</div>
     </header>
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <section className="hero" id="home">
         <div className="hero-photo" role="img" aria-label="Friendly laundry professional with fresh folded towels"/>
         <div className="hero-content"><div className="eyebrow">FRESH CLOTHES. LESS HASSLE.</div><h1>BB Laundry<span>Link</span></h1><h2>Find. Compare. Book.</h2><p>Discover the best laundry services near you<br className="desktop"/> with transparent prices and trusted partners.</p>
@@ -58,11 +60,11 @@ function HomePage() {
       <section className="services" aria-label="Filter by laundry service">{services.map(([icon,label]) => <button key={label} className={service === label ? 'selected' : ''} aria-pressed={service === label} onClick={() => dispatch(setService(service === label ? '' : label))}><Icon name={icon} size={42}/><span>{label}</span></button>)}</section>
       <section className="marketplace" id="partners"><div className="partners"><div className="section-heading"><div><h2>Nearby Laundry Partners</h2><p>Compare prices, choose the best, and book instantly!</p></div><button className="city" onClick={() => { document.querySelector('.location-input input').focus(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}><Icon name="pin" size={19}/> Bhubaneswar ⌄</button></div>
         {(service || query) && <div className="filter-info">Showing {service || 'all services'}{query && ` near “${query}”`} <button onClick={() => {dispatch(clearFilters());setArea('')}}>Clear filters ×</button></div>}
-        <div className="partner-grid">{filtered.map(p => <article className="partner-card" key={p.id}><div className="shop-image"><img src={`/images/${p.id}.webp`} alt={`${p.name} storefront`}/><span className="rating">★ {p.rating}</span></div><div className="card-body"><div className="card-title"><h3>{p.name}</h3><div className="price">₹{p.price}<small>/kg</small></div></div><div className="card-location"><span><Icon name="pin" size={16}/>{p.area}</span><del>₹{p.old}/kg</del></div><div className="card-bottom"><span><Icon name="truck" size={16}/>{p.distance} km</span><span><Icon name="clock" size={16}/>{p.time} mins</span><button className="outline" onClick={() => setDialog({ type: 'partner', partner: p })}>View Details →</button></div></div></article>)}</div>
-        {!filtered.length && <div className="empty"><Icon name="search" size={36}/><h3>No laundry partners found</h3><p>Try Bhubaneswar, Patia, Kharavela Nagar, or IRC Village.</p></div>}
+        <div className="partner-toolbar"><p role="status">{filtered.length} {filtered.length === 1 ? 'partner' : 'partners'} found <span>· Sample listings</span></p><label>Sort by <select aria-label="Sort laundry partners" value={sort} onChange={e => setSort(e.target.value)}><option value="recommended">Recommended</option><option value="price">Price: low to high</option><option value="rating">Highest rated</option></select></label></div><div className="partner-grid">{filtered.map(p => <article className="partner-card" key={p.id}><div className="shop-image"><img src={`/images/${p.id}.webp`} alt={`${p.name} storefront`}/><span className="rating">★ {p.rating}</span></div><div className="card-body"><div className="card-title"><h3>{p.name}</h3><div className="price">₹{p.price}<small>/kg</small></div></div><div className="card-location"><span><Icon name="pin" size={16}/>{p.area}</span><del>₹{p.old}/kg</del></div><div className="card-bottom"><span><Icon name="truck" size={16}/>{p.distance} km</span><span><Icon name="clock" size={16}/>{p.time} mins</span><button className="outline" onClick={() => setDialog({ type: 'partner', partner: p })}>View Details →</button></div></div></article>)}</div>
+        {!filtered.length && <div className="empty"><Icon name="search" size={36}/><h3>No laundry partners found</h3><p>Try Bhubaneswar, Patia, Kharavela Nagar, or IRC Village.</p><button className="outline" onClick={() => {dispatch(clearFilters());setArea('')}}>Show all partners</button></div>}
       </div><aside className="booking-banner"><div className="banner-bubble"/><h2>Book Laundry<br/>in Just a Few Clicks!</h2><ul><li>Find Nearby Shops</li><li>Compare Prices</li><li>Track Your Order</li></ul><button className="orange" onClick={() => document.getElementById('partners').scrollIntoView({ behavior: 'smooth' })}>Start Booking <span>→</span></button><div className="phone" aria-hidden="true"><div className="notch"/><img src="/images/logo.webp" alt=""/><div className="map-pins">📍<br/> 📍<br/>📍</div></div></aside></section>
     </main>
-    <footer>{[['support','24/7 Support',"We're always here to help"],['shield','Secure & Reliable','Your trust, our priority'],['user','Trusted Community','Thousands of happy users'],['truck','Grow Together','For a cleaner, fresher city']].map(([icon,title,text]) => <div className="footer-item" key={title}><Icon name={icon} size={43}/><div><h3>{title}</h3><p>{text}</p></div></div>)}</footer>
+    <footer>{[['support','24/7 Support',"We're always here to help"],['shield','Secure & Reliable','Your trust, our priority'],['user','Trusted Community','Connecting local laundry partners'],['truck','Grow Together','For a cleaner, fresher city']].map(([icon,title,text]) => <div className="footer-item" key={title}><Icon name={icon} size={43}/><div><h3>{title}</h3><p>{text}</p></div></div>)}</footer>
     {dialog && <div className="modal-backdrop" onClick={() => setDialog(null)}><section className="modal" role="dialog" aria-modal="true" aria-label={dialog.partner?.name || dialog.type} onClick={e => e.stopPropagation()}><button autoFocus className="close" aria-label="Close dialog" onClick={() => setDialog(null)}>×</button>
       {dialog.type === 'partner' ? <><img className="modal-shop" src={`/images/${dialog.partner.id}.webp`} alt={dialog.partner.name}/><h2>{dialog.partner.name}</h2><p>{dialog.partner.area} · ★ {dialog.partner.rating}</p><h3>From ₹{dialog.partner.price}/kg</h3><p>{dialog.partner.services.join(' · ')}</p><p className="notice">This is a homepage preview. Live availability and booking will be available when the booking service is connected.</p></> : dialog.type === 'how' ? <><h2>Fresh laundry in 3 easy steps</h2><ol><li>Find a laundry partner in your area.</li><li>Compare services, prices, and ratings.</li><li>Choose your service and arrange a pickup.</li></ol></> : dialog.type === 'about' ? <><h2>Your laundry, our priority.</h2><p>BB LaundryLink helps you discover and compare local laundry partners — all in one place, with clear prices and convenient services.</p></> : <><h2>You're all caught up</h2><p>Your booking updates will appear here.</p></>}
     </section></div>}
