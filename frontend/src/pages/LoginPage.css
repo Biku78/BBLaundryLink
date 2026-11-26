@@ -37,3 +37,39 @@
 @media (max-width: 980px) {
   .login-art { background-position: center top; }
 }
+
+/* Desktop: fit the complete composition to the actual browser content height.
+   Do not hide overflow: validation messages and browser zoom stay accessible. */
+@media (min-width: 981px) {
+  .login-page { min-height: 100dvh; align-items: stretch; }
+  .login-art { min-height: 0; background-size: contain; background-position: center; }
+  .login-side { min-height: 0; padding: 12px 5% 12px 0; }
+  .login-panel { padding: clamp(14px, 2vh, 24px) 28px; }
+  .login-tabs { min-height: 44px; margin-bottom: clamp(10px, 2vh, 20px); }
+  .login-tabs > span, .login-tabs > button { padding-block: 8px; }
+  .login-panel h1 { font-size: clamp(23px, 2.1vw, 32px); }
+  .login-tagline { margin: 8px 0 16px; font-size: 20px; }
+  .login-field { min-height: 52px; margin-bottom: 10px; }
+  .login-field input { padding-block: 12px; font-size: 16px; }
+  .login-options { margin: 8px 0; }
+  .login-submit { padding: 12px; font-size: 21px; }
+  .login-divider { margin: 12px 0; font-size: 16px; }
+  .login-alternative { min-height: 44px; margin-bottom: 8px; font-size: 16px; }
+  .login-register { margin-top: 8px; }
+  .login-footnote { margin-top: 6px; }
+  .login-slogan { font-size: 20px; margin-top: 8px; }
+  .login-home-link { bottom: 16px; left: 16px; }
+}
+@media (min-width: 981px) and (max-height: 700px) {
+  .login-side { padding-block: 8px; }
+  .login-panel { padding: 12px 24px; }
+  .login-panel h1 { font-size: 24px; }
+  .login-tabs { margin-bottom: 8px; }
+  .login-tagline { margin: 6px 0 10px; font-size: 18px; }
+  .login-field { min-height: 44px; margin-bottom: 8px; }
+  .login-field input { padding-block: 8px; }
+  .login-field button { min-height: 36px; }
+  .login-divider { margin-block: 8px; }
+  .login-register a { min-height: 30px; }
+  .login-options button { min-height: 32px; }
+}
