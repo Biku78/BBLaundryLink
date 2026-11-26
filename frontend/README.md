@@ -7,6 +7,14 @@ npm install
 npm run dev
 ```
 
+## Bootstrap styling
+
+Bootstrap 5 is installed locally through npm. `src/styles/bootstrap.scss` imports the grid, containers, forms, buttons, alerts, badges, spinners, and utility classes; it is loaded before custom styles in `main.jsx`.
+
+Use Bootstrap classes first for new UI: `row`, `col`, `row-cols-*`, `g-*`, `d-flex`, `align-items-center`, `justify-content-between`, `btn`, `form-control`, `form-select`, `form-check-input`, and `alert`. The homepage and dashboard partner lists use Bootstrap's responsive grid. Repeated flex-layout CSS declarations have been removed where utilities now handle them.
+
+Keep custom CSS for the brand gradients, artwork, specialized dashboard/sidebar layout, and viewport-height fitting. Bootstrap Reboot and JS plugins are intentionally not imported: React manages menus/dialogs, and the existing typography and dialog behavior are preserved. Theme colors and the compact button line height are configured in the Sass entry point. Sass is compiled by Vite; no CDN is required.
+
 ## Structure
 
 - `src/main.jsx`: Redux `Provider` → `BrowserRouter` → `App` (inside StrictMode).
