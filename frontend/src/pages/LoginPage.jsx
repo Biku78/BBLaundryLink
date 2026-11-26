@@ -19,7 +19,7 @@ export default function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  if (user) return <Navigate to="/" replace />
+  if (user) return <Navigate to="/dashboard" replace />
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -37,7 +37,7 @@ export default function LoginPage() {
       } catch { /* Login must still work when browser storage is unavailable. */ }
       dispatch(setCredentials(response.data))
       setPassword('')
-      navigate('/', { replace: true })
+      navigate('/dashboard', { replace: true })
     } catch (error) {
       setMessage(error.status === 'FETCH_ERROR' || error.status === 'PARSING_ERROR' || Number(error.status) >= 500
         ? 'Unable to reach the login service. Please try again later.'
