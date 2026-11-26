@@ -73,3 +73,19 @@
   .login-register a { min-height: 30px; }
   .login-options button { min-height: 32px; }
 }
+
+/* Consistent form iconography and labels that remain visible while typing. */
+.auth-input-group { display: flex; flex-direction: column; flex: 1; min-width: 0; gap: 3px; padding-block: 7px; }
+.auth-input-group > span { font-size: 11px; font-weight: 700; color: #4e6388; }
+.login-field .auth-input-group input { padding-block: 0; line-height: 1.4; }
+.login-field > svg { color: #0054cb; }
+.login-field button, .password-toggle { display: inline-flex; align-items: center; justify-content: center; }
+.login-submit, .register-submit { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.register-icon { display: flex; align-items: center; }
+.login-message:focus { outline: 2px solid #d48124; outline-offset: 2px; }
+.login-alternative > svg { color: #0054cb; }
+.register-alternatives button > svg { flex-shrink: 0; color: #0054cb; }
+
+@media (min-width: 981px) and (max-height: 700px) {
+  .login-field .auth-input-group { padding-block: 2px; gap: 0; }
+}
