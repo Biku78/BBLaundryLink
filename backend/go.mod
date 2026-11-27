@@ -2,6 +2,8 @@ module bb-laundrylink-backend
 
 go 1.27.4
 
+require github.com/gin-contrib/cors v1.7.6
+
 require (
 	filippo.io/edwards25519 v1.2.0 // indirect
 	github.com/bytedance/gopkg v0.1.4 // indirect
