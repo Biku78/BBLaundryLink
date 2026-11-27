@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
+import AccountPage from './pages/AccountPage'
 import DashboardPage from './pages/DashboardPage'
 import './App.css'
 
@@ -18,8 +17,8 @@ function App() {
     <a className="skip-link" href="#main-content">Skip to main content</a>
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<AccountPage />} />
+      <Route path="/register" element={<AccountPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/dashboard/preview" element={<DashboardPage preview />} />
       <Route path="*" element={

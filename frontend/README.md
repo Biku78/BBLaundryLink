@@ -65,17 +65,13 @@ The uploaded source designs are integrated directly, rather than approximated fr
 
 Bootstrap remains in place for auth and other existing pages. The supplied designs use Tailwind, Framer Motion, and Lucide as in the original project. `npm run design:css` compiles `src/designs/design-source.css` and scopes all selectors under `.provided-design`, preventing Tailwind resets and utilities from altering login/register. It runs automatically before production builds. Run it again after changing Tailwind classes during development. `integration.css` contains only integration, preserved-logo, accessibility, and responsive overrides. Fonts are bundled locally through Fontsource.
 
-## Customer registration
+## Unified customer access
 
-Apply **both** SQL up migrations in `backend/database/migrations` in order. Existing databases specifically need `000002_add_mobile_to_users.up.sql`; otherwise registration cannot insert the mobile number. The new column is nullable so existing seeded accounts are unaffected.
+`src/pages/AccountPage.jsx` provides one shared Login/Create account component. `/login` and `/register` render the same component with route-selected form modes; successful registration switches to Login and prefills the new email. Existing links and deep links remain supported. The logo and home/dashboard designs are unchanged.
 
-`POST /api/register` accepts `name`, `mobile` (10 digits), `email`, `password`, `confirm_password`, and `accept_terms` (boolean). It creates a customer with a bcrypt password hash and returns HTTP 201. Invalid input returns 400, duplicate email returns 409, and database errors return a generic 500 without exposing internals. Public registration cannot choose an admin or partner role. The frontend redirects to login after success; it does not automatically sign in.
+The scoped `AccountPage.css` introduces a forest-green/cream layout with CSS laundry artwork, responsive Bootstrap form grids, show/hide password controls, accessible policy dialogs, and compact desktop sizing without clipping. Mobile permits natural vertical scrolling. Backend endpoints, Redux/RTK Query flow, registration validation, and in-memory authentication are unchanged. Google/OTP placeholder buttons are omitted rather than presenting unavailable sign-in methods. Password-reset help points to support; no reset API is invented.
 
-The frontend and backend validate matching passwords (minimum 8 characters, maximum 72 UTF-8 bytes). Email uniqueness is enforced by the existing database unique key. Mobile numbers are stored but are not verified or used to sign in.
-
-Before public deployment, review the in-app development terms/privacy notices, configure TLS and API rate limiting, and configure a monitored support address. Google/OTP and shop onboarding are not implemented.
-
-Backend validation tests: `cd backend && go test ./internal/services`. This requires the Go version declared in `go.mod` and its dependencies. Frontend HTTP tests mock the backend; live MySQL registration/login must be verified in your configured backend environment.
+Registration still requires the existing database migration, a running Go backend and MySQL. Live authentication cannot be exercised in this sandbox without that backend; browser flow checks use explicitly mocked API responses.
 
 ## Checks
 
