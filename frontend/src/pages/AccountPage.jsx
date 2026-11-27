@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import UiIcon from "../components/UiIcon";
-import { Shirt } from "lucide-react";
+
 import Modal from "../components/Modal";
 import { useLoginMutation, useRegisterMutation } from "../services/api";
 import { setCredentials } from "../features/auth/authSlice";
@@ -202,43 +202,47 @@ export default function AccountPage() {
               <span /> LESS LAUNDRY. MORE LIFE.
             </span>
             <h2>
-              A fresh start.
-              <br />A little more
+              Your laundry.
               <br />
-              <em>you time.</em>
+              <em>Your way.</em>
+              <br />
+              More you time.
             </h2>
             <p>
-              Your day is made for bigger things.
-              <br />
-              Let’s make laundry the easy part.
+              Find your local laundry. Compare your options.
+              <br />A fresh routine starts with one account.
             </p>
           </div>
-          <div className="account-art" aria-hidden="true">
-            <div className="account-orbit first" />
-            <div className="account-orbit second" />
-            <div className="account-washer">
-              <div className="account-washer-controls">
-                <i />
-                <span />
-                <b>BB</b>
+          <div className="account-photo-stage">
+            <div className="account-photo-halo" aria-hidden="true" />
+            <img
+              className="account-lifestyle-photo"
+              src="/images/landing-fresh.webp"
+              alt="Fresh laundry being carefully checked beside a washing machine"
+            />
+            <div className="account-photo-ticket">
+              <span className="account-ticket-icon">
+                <UiIcon name="shop" size={22} />
+              </span>
+              <div>
+                <strong>Local care. One place.</strong>
+                <small>Find • Compare • Book</small>
               </div>
-              <div className="account-washer-door">
-                <div className="account-water" />
-                <Shirt size={66} strokeWidth={1.5} />
-              </div>
-              <div className="account-washer-base" />
+              <span aria-hidden="true">↗</span>
             </div>
-            <span className="account-fresh-stamp">
-              A FRESH
+            <span className="account-photo-seal" aria-hidden="true">
+              FRESH START
               <br />
-              <strong>perspective ✦</strong>
+              <strong>FEELS GOOD ✦</strong>
             </span>
-            <div className="account-floating-label">
-              <span>✦</span> Laundry, reimagined.
-            </div>
+            <span className="account-photo-caption" aria-hidden="true">
+              Less chores.
+              <br />
+              <b>More living.</b>
+            </span>
           </div>
           <div className="account-story-bottom">
-            <span>01 / A CLEANER ROUTINE</span>
+            <span>YOUR EVERYDAY LAUNDRY COMPANION</span>
             <span>Made for Bhubaneswar ↗</span>
           </div>
         </aside>
@@ -275,12 +279,12 @@ export default function AccountPage() {
             </div>
             <h1>
               {creating ? (
-                <>Your fresh chapter.</>
+                <>Join the fresh side.</>
               ) : (
                 <>
-                  Good to have
+                  Welcome to
                   <br />
-                  you back.
+                  your fresh side.
                 </>
               )}
             </h1>
