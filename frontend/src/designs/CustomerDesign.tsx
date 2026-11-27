@@ -177,7 +177,7 @@ export default function App() {
         </div>
         {/* New design badge */}
         <div className="flex justify-center mt-2">
-          <span className="inline-flex items-center gap-1.5 bg-slate-900 text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wide"><Sparkles className="w-3 h-3 text-amber-400"/> NEW DESIGN • NO SIDEBAR • FLOATING DOCK + BENTO GRID</span>
+          <span className="inline-flex items-center gap-1.5 bg-slate-900 text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wide"><Sparkles className="w-3 h-3 text-amber-400"/> NEW OFFER COMMIING SOON</span>
         </div>
       </header>
 
