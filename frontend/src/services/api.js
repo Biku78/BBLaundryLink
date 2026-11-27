@@ -4,12 +4,20 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API_BASE_URL || '/api/',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token
+      if (token) headers.set('authorization', `Bearer ${token}`)
+      return headers
+    },
   }),
   endpoints: (builder) => ({
     getHealth: builder.query({
       query: () => 'health',
     }),
-    login: builder.mutation({ 
+    register: builder.mutation({
+      query: (details) => ({ url: 'register', method: 'POST', body: details }),
+    }),
+    login: builder.mutation({
       query: (credentials) => ({
         url: 'login',
         method: 'POST',
@@ -19,4 +27,4 @@ export const api = createApi({
   }),
 })
 
-export const { useGetHealthQuery, useLoginMutation } = api
+export const { useGetHealthQuery, useLoginMutation, useRegisterMutation } = api
