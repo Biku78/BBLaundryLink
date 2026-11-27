@@ -48,29 +48,22 @@ By default the API base URL is `/api/`. To use a different deployment, set `VITE
 
 Production hosting must serve the app's `index.html` for client-side routes (SPA fallback), and proxy `/api` to the backend unless a custom API base URL is set.
 
-## Marketplace homepage
+## Supplied homepage and dashboard designs
 
-The redesigned `/` page uses a floating header, photographic service cards, an interactive price estimator, six sample partner cards, side-by-side comparison, a guide, illustrative stories, and native expandable FAQs.
+The uploaded source designs are integrated directly, rather than approximated from screenshots:
 
-- Search and service filters use Redux; nearest/price/rating sorting is client-side.
-- Select 2–3 partners to open the comparison table. Favorites and comparison selections are page-session state, not saved account data.
-- `src/data/samplePartners.js` is the shared source for partner details, `image` URLs, and service-specific sample `rates` used by both homepage and dashboard. Change these fields to update images and prices; there is no partner/image API yet.
-- Images are separate WebP assets (not whole-page screenshot backgrounds). Service images respond to hover/focus and select the corresponding calculator service; the estimator's provider thumbnail changes with the selected service.
-- `estimateLaundry` selects the lowest sample rate and computes quantity × rate, plus the optional rounded 30% express surcharge. Wash/fold and dry cleaning use kg; ironing uses pieces; shoe care uses pairs. Pickup is included only in the illustrative estimate.
-- No calculator or booking button creates an order or payment. Stories, ratings, distances, turnaround times, and promotions are explicitly samples rather than verified real activity.
-- The homepage modal supports Escape, focus trapping, and restoring focus to its trigger. Navigation, FAQs, comparison, and service cards support keyboard use.
+- `src/designs/MarketplaceDesign.tsx`: supplied `App-2.tsx`, used for `/`.
+- `src/designs/CustomerDesign.tsx`: supplied `App.tsx`, used for `/dashboard` and public `/dashboard/preview`.
+- The existing `/images/logo.webp` is unchanged and used in both headers.
+- Login and Register buttons open the real auth routes. Protected dashboard access, Redux/RTK Query authentication, account name/email (including backend capitalized fields), and actual logout are retained.
+- External photo URLs have been replaced with bundled WebP assets; neutral illustrative avatars avoid broken remote profile photos.
+- Motion, expanding service imagery, comparison, FAQs, favorites, categories, dock tabs, and the supplied app-promo layout are retained. Dialogs support Escape, focus trapping/restoration, and scroll locking.
+- Partner/booking/review/tracking/wallet content is explicitly a design sample. Preview booking and wallet controls do not create real orders or payments. Clipboard copying works when browser permissions allow it.
+- The calculator uses shared sample service rates with kg/piece/pair units and optional 30% express surcharge. Booking previews also use service-specific rates.
 
-## Customer dashboard
+### Style isolation
 
-- `/dashboard`: customer dashboard; requires an authenticated Redux user. Successful login now redirects here.
-- `/dashboard/preview`: public design preview using the name Guest; it grants no account access.
-- The redesigned dashboard has no sidebar: a rounded sticky top bar and floating Home/Bookings/Track/Wallet/Profile dock provide navigation.
-- Search partner names/neighborhoods/services, filter services, sort by price/rating, switch grid/list view, and toggle session-only favorites.
-- Six sample partner cards, a welcome/search hero, laundry photo, sample tracking, wallet placeholder, service steps, and offer cards follow the supplied bento-style reference.
-- Offer code buttons copy sample codes when browser clipboard access is available; sample codes are not redeemable.
-- Profile uses the signed-in user's actual name/email. Logout clears Redux credentials and RTK Query cache.
-- Listings, tracking, and offers are explicitly sample content. Wallet balance is unavailable, not a fabricated real balance. No booking, payment, wallet, notification, or order-tracking endpoints exist yet.
-- Bootstrap responsive rows/columns and utilities handle card layouts. The bottom dock stays visible on phones, with safe-area spacing and content padding below the final section. Dashboard typography uses locally bundled Outfit fonts (no font CDN).
+Bootstrap remains in place for auth and other existing pages. The supplied designs use Tailwind, Framer Motion, and Lucide as in the original project. `npm run design:css` compiles `src/designs/design-source.css` and scopes all selectors under `.provided-design`, preventing Tailwind resets and utilities from altering login/register. It runs automatically before production builds. Run it again after changing Tailwind classes during development. `integration.css` contains only integration, preserved-logo, accessibility, and responsive overrides. Fonts are bundled locally through Fontsource.
 
 ## Customer registration
 
