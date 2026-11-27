@@ -32,3 +32,17 @@ html { scroll-behavior: smooth; }
  radial-gradient(ellipse 50% 40% at 50% 100%, rgba(37,99,235,.18), transparent)}
 input[type=range]{-webkit-appearance:none;appearance:none;height:8px;border-radius:999px;background:linear-gradient(90deg,#2563EB,#38BDF8);outline:none}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid #2563EB;box-shadow:0 4px 14px rgba(37,99,235,.4);cursor:pointer}
+
+/* Fresh Pass supplied care-label effects. */
+.perspective-1200{perspective:1200px}
+.preserve-3d{transform-style:preserve-3d}
+.backface-hidden{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.barcode{background:repeating-linear-gradient(90deg,#0f172a 0 2px,transparent 2px 5px,#0f172a 5px 6px,transparent 6px 10px,#0f172a 10px 13px,transparent 13px 15px,#0f172a 15px 16px,transparent 16px 20px)}
+
+.hero-mesh{background:radial-gradient(ellipse 70% 55% at 15% 0%,rgba(56,189,248,.28),transparent 60%),radial-gradient(ellipse 55% 45% at 95% 15%,rgba(249,115,22,.18),transparent 60%),radial-gradient(ellipse 60% 50% at 50% 110%,rgba(37,99,235,.14),transparent 60%),linear-gradient(180deg,#EFF6FF 0%,#F8FBFF 55%,#FFFFFF 100%)}
+
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.shimmer-text{background:linear-gradient(90deg,#2563EB,#0EA5E9,#F97316,#2563EB);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite}
+.btn-shine{position:relative;overflow:hidden}
+.btn-shine::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);transform:translateX(-120%);transition:transform .6s}
+.btn-shine:hover::after{transform:translateX(120%)}
