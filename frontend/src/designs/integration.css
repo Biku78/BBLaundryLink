@@ -1,0 +1,10 @@
+.provided-design { --font-sans: 'Plus Jakarta Sans', sans-serif; --font-display: 'Outfit', sans-serif; font-family: var(--font-sans); line-height: 1.5; }
+.provided-design .font-display { font-family: var(--font-display); }
+.provided-design .preserved-brand { width: 174px; height: 48px; object-fit: contain; }
+.provided-design button { cursor: pointer; }
+.provided-design :focus-visible { outline: 3px solid #f97316; outline-offset: 3px; }
+.provided-design .design-preview-label { position: relative; background: #e9f2ff; padding: 14px 18px 110px; text-align: center; color: #516480; font-size: 11px; }
+@media (max-width: 640px) { .provided-design .preserved-brand { width: 120px; height: 40px; } }
+@media (min-width: 1024px) and (max-width: 1279px) { .provided-design header nav { display: none; } }
+@media (prefers-reduced-motion: reduce) { .provided-design *, .provided-design *::before, .provided-design *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+.provided-design .sample-design-note { font-size: 10px; color: #64748b; background: #ffffffb0; border: 1px solid #dbeafe; border-radius: 14px; padding: 8px 12px; margin-bottom: 14px; }
