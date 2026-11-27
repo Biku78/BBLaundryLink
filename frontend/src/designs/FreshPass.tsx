@@ -39,13 +39,6 @@ type Props = {
   onModeChange: (register: boolean) => void;
 };
 
-/* ============================================================
-   "THE FRESH PASS" — an original BB LaundryLink idea.
-   Login & Register live on ONE clothing care-label card.
-   Flip the card (3D) -> front = Login, back = Register.
-   Care symbols, stitched border & barcode = the label details.
-   ============================================================ */
-
 const inp =
   "w-full bg-slate-50 border-2 border-slate-100 focus:border-blue-500 rounded-2xl pl-12 pr-4 py-3 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:shadow-[0_0_0_4px_rgba(37,99,235,0.08)]";
 const lbl = "text-[10px] font-black tracking-[0.14em] text-slate-400 uppercase";
@@ -94,6 +87,27 @@ export default function Auth({
   useEffect(() => {
     if (msg) messageRef.current?.focus();
   }, [msg]);
+
+  useEffect(() => {
+  if (!msg) return;
+
+  const handleOutsideClick = (event: PointerEvent) => {
+    const target = event.target;
+
+    if (
+      target instanceof Node &&
+      !messageRef.current?.contains(target)
+    ) {
+      setMsg("");
+    }
+  };
+
+  document.addEventListener("pointerdown", handleOutsideClick);
+
+  return () => {
+    document.removeEventListener("pointerdown", handleOutsideClick);
+  };
+}, [msg]);
   const flash = (message: string) => setMsg(message);
   function apiError(error: any, fallback: string) {
     flash(
@@ -250,8 +264,8 @@ export default function Auth({
           <div className="inline-flex bg-white border border-slate-200 rounded-full p-1.5 shadow-sm mt-6">
             {(
               [
-                { key: false, label: "Login — Front", Icon: KeyRound },
-                { key: true, label: "Register — Back", Icon: Sparkles },
+                { key: false, label: "Login", Icon: KeyRound },
+                { key: true, label: "Register", Icon: Sparkles },
               ] as const
             ).map((o) => (
               <button
@@ -299,20 +313,10 @@ export default function Auth({
 
         {/* ================= THE FLIP CARD ================= */}
         <div className="fresh-pass-stage relative mt-8 perspective-1200 max-w-4xl mx-auto">
-          {/* flip button */}
-          <button
-            onClick={() => setFlipped(!flipped)}
-            className="absolute -top-5 right-5 sm:right-8 z-30 bg-slate-900 text-white text-xs font-black pl-3 pr-4 py-2.5 rounded-full shadow-xl flex items-center gap-2 hover:scale-105 active:scale-95 transition"
-          >
-            <RefreshCcw
-              className={`w-4 h-4 text-amber-400 transition-transform duration-500 ${flipped ? "rotate-180" : ""}`}
-            />
-            Flip the Pass
-          </button>
           {/* hanging tag hole */}
-          <div className="absolute -top-3 left-8 sm:left-12 z-30 flex flex-col items-center">
+          {/* <div className="absolute -top-3 left-8 sm:left-12 z-30 flex flex-col items-center">
             <span className="w-6 h-6 rounded-full bg-[#EFF6FF] border-[5px] border-slate-900 shadow" />
-          </div>
+          </div> */}
 
           <motion.div
             animate={{ rotateY: flipped ? 180 : 0 }}
@@ -325,7 +329,7 @@ export default function Auth({
               inert={flipped}
               className="fresh-pass-front absolute inset-0 backface-hidden bg-white rounded-[36px] shadow-[0_35px_90px_-20px_rgba(15,23,42,0.3)] border border-white overflow-hidden"
             >
-              <div className="absolute inset-3 border-2 border-dashed border-slate-200 rounded-[28px] pointer-events-none z-20" />
+              {/* <div className="absolute inset-3 border-2 border-dashed border-slate-200 rounded-[28px] pointer-events-none z-20" /> */}
               <div className="grid lg:grid-cols-[0.92fr_1fr] h-full">
                 {/* visual */}
                 <div className="relative hidden lg:block">
@@ -345,10 +349,10 @@ export default function Auth({
                       alt="BB LaundryLink"
                     />
                   </span>
-                  <span className="absolute top-6 right-6 bg-white rounded-full px-3 py-1.5 text-[11px] font-black flex items-center gap-1 shadow-lg">
+                  {/* <span className="absolute top-6 right-6 bg-white rounded-full px-3 py-1.5 text-[11px] font-black flex items-center gap-1 shadow-lg">
                     <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />{" "}
                     Fresh care
-                  </span>
+                  </span> */}
                   <div className="absolute bottom-6 left-6 right-6 text-white">
                     <p className="text-[10px] font-black tracking-[0.22em] text-sky-300">
                       SIDE A — MEMBERS
@@ -378,13 +382,11 @@ export default function Auth({
                       <h2 className="font-display font-black text-[26px] leading-tight">
                         Welcome back
                       </h2>
-                      <p className="text-sm font-medium text-slate-500 mt-1">
-                        Login with your Fresh Pass to book, track & wash happy.
-                      </p>
+                      
                     </div>
-                    <span className="hidden sm:flex shrink-0 bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1.5 rounded-full items-center gap-1">
+                    {/* <span className="hidden sm:flex shrink-0 bg-blue-50 border border-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1.5 rounded-full items-center gap-1">
                       <ShieldCheck className="w-3.5 h-3.5" /> SECURE
-                    </span>
+                    </span> */}
                   </div>
 
                   <form
@@ -553,22 +555,20 @@ export default function Auth({
               className="fresh-pass-back absolute inset-0 backface-hidden bg-white rounded-[36px] shadow-[0_35px_90px_-20px_rgba(15,23,42,0.3)] border border-white overflow-hidden"
               style={{ transform: "rotateY(180deg)" }}
             >
-              <div className="absolute inset-3 border-2 border-dashed border-slate-200 rounded-[28px] pointer-events-none z-20" />
+              {/* <div className="absolute inset-3 border-2 border-dashed border-slate-200 rounded-[28px] pointer-events-none z-20" /> */}
               <div className="grid lg:grid-cols-[1fr_0.92fr] h-full">
                 {/* form */}
                 <div className="fresh-pass-form-panel relative p-6 sm:p-9 flex flex-col order-2 lg:order-1">
-                  <div className="flex items-start justify-between gap-3">
+                  {/* <div className="flex items-start justify-between gap-3"> */}
+                  <div className="w-full text-center">
                     <div>
-                      <h2 className="font-display font-black text-[26px] leading-tight">
+                      <h2 className="font-display font-black text-[26px] leading-tight text-center">
                         Get your Fresh Pass
                       </h2>
-                      <p className="text-sm font-medium text-slate-500 mt-1">
-                        One account for your next fresh chapter.
-                      </p>
                     </div>
-                    <span className="hidden sm:flex shrink-0 bg-orange-500 text-white text-[10px] font-black px-2.5 py-1.5 rounded-full items-center gap-1 shadow-lg shadow-orange-500/30 rotate-2">
+                    {/* <span className="hidden sm:flex shrink-0 bg-orange-500 text-white text-[10px] font-black px-2.5 py-1.5 rounded-full items-center gap-1 shadow-lg shadow-orange-500/30 rotate-2">
                       <Gift className="w-3.5 h-3.5" /> 10% OFF
-                    </span>
+                    </span> */}
                   </div>
 
                   <form
@@ -586,7 +586,7 @@ export default function Auth({
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        placeholder="Full name — e.g. Ritika Swain"
+                        placeholder="Full name "
                         className={inp}
                       />
                     </div>
@@ -701,7 +701,7 @@ export default function Auth({
                         className={inp}
                       />
                     </div>
-                    <label className="flex items-start gap-2.5 text-xs font-semibold text-slate-600 cursor-pointer bg-slate-50 border border-slate-100 rounded-2xl p-3 leading-relaxed">
+                    <label className="flex items-center  gap-2.5 text-xs font-semibold text-slate-600 cursor-pointer bg-slate-50 border border-slate-100 rounded-2xl p-3 leading-relaxed">
                       <input
                         disabled={busy}
                         aria-label="Accept Terms and Privacy Policy"
@@ -809,14 +809,12 @@ export default function Auth({
           className="text-center mt-7 text-sm font-semibold text-slate-500 flex items-center justify-center gap-2 flex-wrap"
         >
           <RefreshCcw className="w-4 h-4 text-blue-500" />
-          Tip: press{" "}
           <button
             onClick={() => setFlipped(!flipped)}
             className="font-black text-slate-800 underline underline-offset-4 decoration-orange-400 decoration-2 hover:text-blue-600 transition"
           >
             "Flip the Pass"
           </button>{" "}
-          — one card, both doors. No page changes, ever.
         </motion.p>
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 mt-5 text-slate-500">
           <span className="flex items-center gap-1.5 text-xs font-black">

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// Keep credentials in memory, not localStorage. A refresh requires signing in again.
 const initialState = { token: null, user: null }
 const authSlice = createSlice({
   name: 'auth',
