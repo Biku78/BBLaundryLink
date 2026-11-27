@@ -12,7 +12,7 @@ import '@fontsource/plus-jakarta-sans/latin-800.css'
 import './design.generated.css'
 import './integration.css'
 
-export default function DesignShell({ children }) {
+export default function DesignShell({ children, showPreview = true }) {
   const root = useRef(null)
   useEffect(() => {
     let active = null
@@ -45,5 +45,5 @@ export default function DesignShell({ children }) {
     document.addEventListener('keydown', keydown)
     return () => { observer.disconnect(); document.removeEventListener('keydown', keydown); if (active) document.body.style.overflow = overflow }
   }, [])
-  return <div ref={root} className="provided-design">{children}<div className="design-preview-label" role="note">Design preview · Sample partners, reviews, wallet & tracking · Booking and payment not live</div></div>
+  return <div ref={root} className="provided-design">{children}{showPreview && <div className="design-preview-label" role="note">Design preview · Sample partners, reviews, wallet & tracking · Booking and payment not live</div>}</div>
 }

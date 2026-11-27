@@ -65,13 +65,15 @@ The uploaded source designs are integrated directly, rather than approximated fr
 
 Bootstrap remains in place for auth and other existing pages. The supplied designs use Tailwind, Framer Motion, and Lucide as in the original project. `npm run design:css` compiles `src/designs/design-source.css` and scopes all selectors under `.provided-design`, preventing Tailwind resets and utilities from altering login/register. It runs automatically before production builds. Run it again after changing Tailwind classes during development. `integration.css` contains only integration, preserved-logo, accessibility, and responsive overrides. Fonts are bundled locally through Fontsource.
 
-## Unified customer access
+## Unified customer access — supplied Fresh Pass design
 
-`src/pages/AccountPage.jsx` provides one shared Login/Create account component. `/login` and `/register` render the same component with route-selected form modes; successful registration switches to Login and prefills the new email. Existing links and deep links remain supported. The logo and home/dashboard designs are unchanged.
+`src/designs/FreshPass.tsx` integrates the uploaded `Auth.tsx`: a single 3D clothing-care-label card with Login on the front and Register on the back. The supplied stitched border, tag hole, barcode, care symbols, photography panels, and flip controls are retained. The unchanged original logo and bundled local photos replace missing reference image paths. `AccountPage.jsx` handles `/login` and `/register`, redirects authenticated users, and connects card modes with the routes.
 
-The scoped `AccountPage.css` introduces a brand-matched blue/cyan/orange layout with circular laundry photography and floating glass details, responsive Bootstrap form grids, show/hide password controls, accessible policy dialogs, and compact desktop sizing without clipping. Mobile permits natural vertical scrolling. Backend endpoints, Redux/RTK Query flow, registration validation, and in-memory authentication are unchanged. Google/OTP placeholder buttons are omitted rather than presenting unavailable sign-in methods. Password-reset help points to support; no reset API is invented.
+Login/register use the existing Redux/RTK Query endpoints. Successful registration flips to Login and prefills the new email; it does not bypass login. A confirmation-password field replaces the unsupported referral field to match backend validation. City is a display preference only and is not sent to the existing registration endpoint. Google, OTP and password-reset controls explain their unavailable status rather than faking authentication or sending codes. All sample offers are labeled as previews.
 
-Registration still requires the existing database migration, a running Go backend and MySQL. Live authentication cannot be exercised in this sandbox without that backend; browser flow checks use explicitly mocked API responses.
+Scoped `AccountPage.css` adapts the supplied design to desktop viewport-fit requirements and Bootstrap's existing important utilities. On mobile the page scrolls naturally. Inactive card faces are inert and hidden from assistive technology; reduced-motion settings disable the 3D transition. `DesignShell` scopes Tailwind and omits its marketplace-preview footer on auth pages. Homepage/dashboard design files and backend services are unchanged.
+
+A live Go backend and MySQL are required for actual authentication. Browser flow checks in this sandbox use explicitly mocked API responses.
 
 ## Checks
 
