@@ -1,1077 +1,380 @@
-.account-page {
-  min-height: 100dvh;
-  padding: 20px;
-  background: #edf5ff;
-  color: #14213d;
-  font-family: "Outfit", sans-serif;
-  display: grid;
-  place-items: center;
+.provided-design .fresh-pass {
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
-.account-page * {
-  box-sizing: border-box;
-}
-.account-shell {
-  width: 100%;
-  max-width: 1440px;
-  min-height: min(830px, calc(100dvh - 40px));
-  display: grid;
-  grid-template-columns: 0.92fr 1fr;
-  border: 1px solid #fff;
-  border-radius: 30px;
-  background: #ffffff;
-  box-shadow: 0 22px 65px #1d5aff15;
-  overflow: hidden;
-}
-.account-story {
-  position: relative;
-  background: #173e41;
-  background-image: radial-gradient(
-    ellipse at 90% 80%,
-    #327473,
-    transparent 65%
-  );
-  color: #ffffff;
-  padding: 34px 42px 24px;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-}
-.account-logo {
-  display: inline-flex;
-  align-self: flex-start;
-  background: #fff;
-  padding: 9px 17px;
-  border-radius: 16px;
-}
-.account-logo img {
-  display: block;
-  width: 148px;
-  height: 45px;
+.provided-design .fresh-pass-logo {
+  width: 112px;
+  height: 33px;
   object-fit: contain;
 }
-.account-story-copy {
-  margin-top: 42px;
-  position: relative;
-  z-index: 1;
+.provided-design .fresh-pass [inert] {
+  pointer-events: none;
 }
-.account-overline {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: #abd2ff;
-  font-weight: 600;
-}
-.account-overline > span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff9a27;
-  box-shadow: 0 0 0 4px #ff9a2720;
-}
-.account-story h2 {
-  font-size: clamp(42px, 4.9vw, 72px);
-  line-height: 0.99;
-  font-weight: 600;
-  letter-spacing: -2.8px;
-  margin: 23px 0 18px;
-  color: #ffffff;
-}
-.account-story h2 em {
-  color: #ff9a27;
-  font-style: normal;
-}
-.account-story-copy p {
-  color: #b4c9ef;
-  font-size: 14px;
-  line-height: 1.7;
-}
-.account-story-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: #9bbaf0;
-  font-size: 9px;
-  letter-spacing: 0.5px;
-  border-top: 1px solid #acc8ff30;
-  padding-top: 17px;
-  margin-top: 10px;
-}
-.account-content {
-  padding: 32px clamp(25px, 4.7vw, 72px) 24px;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.account-content-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: #8798b3;
-  font-size: 10px;
-  letter-spacing: 1px;
-}
-.account-content-top > a {
-  font-size: 11px;
-  color: #536c96;
-  letter-spacing: 0;
-}
-.account-content-top > a > span {
-  margin-left: 9px;
-}
-.account-form-wrap {
-  width: 100%;
-  max-width: 450px;
-  margin: auto;
-  padding-block: 28px;
-}
-.account-mode-switch {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 5px;
-  padding: 5px;
-  border: 1px solid #dce8fb;
-  border-radius: 15px;
-  background: #eff5ff;
-  margin-bottom: 25px;
-}
-.account-mode-switch > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 22px;
-  background: transparent;
-  padding: 11px 15px;
-  color: #7789a6;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 13px;
-}
-.account-mode-switch > button.active {
-  background: #fff;
-  color: #1b5cff;
-  box-shadow: 0 2px 6px #175bff18;
-}
-.account-mode-switch > button > span {
-  font-size: 16px;
-}
-.account-welcome-mark {
-  color: #ff8319;
-  font-size: 27px;
-  margin-bottom: 7px;
-}
-.account-content h1 {
-  color: #14213d;
-  font-size: clamp(34px, 3.4vw, 48px);
-  line-height: 1.02;
-  letter-spacing: -1.9px;
-  font-weight: 600;
-  margin: 0;
-}
-.account-intro {
-  color: #7b8ca7;
-  font-size: 13px;
-  margin: 14px 0 27px;
-  line-height: 1.6;
-}
-.account-fieldset {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  min-width: 0;
-}
-.account-fields {
-  --bs-gutter-y: 18px;
-  --bs-gutter-x: 14px;
-}
-.account-field-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: #314667;
-  margin-bottom: 8px;
-}
-.account-input {
-  display: flex;
-  align-items: center;
-  border: 1px solid #dce6f5;
-  border-radius: 12px;
-  padding-inline: 13px;
-  background: #f7faff;
-  min-height: 49px;
-  color: #86a0c1;
-  gap: 9px;
-}
-.account-input:focus-within {
-  border-color: #3075ff;
-  box-shadow: 0 0 0 3px #2470ff15;
-  background: white;
-}
-.account-input > input.form-control {
-  min-width: 0;
-  width: 100%;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  padding: 12px 0;
-  font: inherit;
-  font-size: 13px;
-  color: #14213d;
-  outline: 0;
-}
-.account-input > input::placeholder {
-  color: #9baac0;
-  font-size: 12px;
-}
-.account-input > button {
-  background: transparent;
-  padding: 5px;
-  color: #8499b8;
-  display: grid;
-  place-items: center;
-}
-.account-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin: 17px 0 23px;
-  color: #7184a2;
-  font-size: 11px;
-}
-.account-options > label {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-}
-.account-page .form-check-input {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-  accent-color: #1b5cff;
-  border-color: #c8d9f4;
-  flex-shrink: 0;
-}
-.account-page .form-check-input:checked {
-  background-color: #1b5cff;
-  border-color: #1b5cff;
-}
-.account-options > button {
-  color: #2163ed;
-  background: transparent;
-  font-size: 11px;
-}
-.account-page .account-submit {
-  width: 100%;
-  background: #175bff;
-  border: 1px solid #175bff;
-  color: #ffffff;
-  border-radius: 12px;
-  min-height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 13px 18px;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 5px 9px #175bff20;
-}
-.account-submit > span:last-child:not(.spinner-border) {
-  margin-left: auto;
-  font-size: 19px;
-}
-.account-submit:hover {
-  background: #1249d6;
-  color: white;
-  transform: translateY(-1px);
-}
-.account-submit:disabled {
-  opacity: 0.65;
+.provided-design .fresh-pass button:disabled {
+  opacity: 0.55;
   cursor: wait;
 }
-.account-switch-prompt {
-  text-align: center;
-  color: #8191aa;
-  font-size: 11px;
-  margin: 21px 0;
-}
-.account-switch-prompt button {
-  background: none;
-  color: #175bff;
-  font-weight: 600;
-  padding: 0 3px;
-}
-.account-security {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  color: #8e9fba;
-  font-size: 10px;
-  border-top: 1px solid #e6edf9;
-  padding-top: 19px;
-}
-.account-footer {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: #90a0b9;
-  font-size: 10px;
-}
-.account-footer > a {
-  color: #536c96;
-}
-.account-feedback {
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-size: 12px;
-  margin: 14px 0;
-  line-height: 1.6;
-}
-.account-feedback.error {
-  background: #fff0e6;
-  color: #8d452d;
-  border: 1px solid #f3d5bb;
-}
-.account-feedback.success {
-  background: #edf5dd;
-  color: #3b622a;
-  border: 1px solid #cfdfa9;
-}
-.account-password-hint {
-  color: #8395b0;
-  font-size: 10px;
-  line-height: 1.6;
-  margin-top: 10px;
-}
-.account-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin: 16px 0 19px;
-  color: #7688a5;
-  font-size: 11px;
-  line-height: 1.5;
-}
-.account-consent .form-check-input {
-  margin-top: 1px;
-}
-.account-consent button {
-  color: #175bff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  background: transparent;
-  padding: 0;
-}
-.account-creating .account-intro {
-  margin-bottom: 20px;
-}
-.account-creating .account-mode-switch {
-  margin-bottom: 16px;
-}
-.account-creating .account-welcome-mark {
-  display: none;
-}
-.account-creating .account-fields {
-  --bs-gutter-y: 13px;
-}
-.account-creating .account-switch-prompt {
-  margin-block: 16px;
-}
-.account-page :is(a, button, input):focus-visible {
-  outline: 3px solid #ff9a27;
+.provided-design .fresh-pass :focus-visible {
+  outline: 3px solid #ff9d24;
   outline-offset: 3px;
 }
-.account-page .account-input input:focus-visible {
-  outline: none;
+.provided-design .fresh-pass input {
+  min-width: 0;
 }
-.account-page button:disabled {
-  cursor: not-allowed;
+.provided-design .fresh-pass-heading h1 {
+  line-height: 1.1;
 }
-@media (min-width: 992px) and (max-height: 780px) {
-  .account-page {
-    padding: 12px;
+.provided-design .fresh-pass .fresh-pass-front > div:last-child,
+.provided-design .fresh-pass .fresh-pass-back > div:last-child {
+  min-height: 0;
+}
+@media (min-width: 992px) {
+  .provided-design .fresh-pass-container {
+    max-width: 1120px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
-  .account-shell {
-    min-height: calc(100dvh - 24px);
+  .provided-design .fresh-pass-heading {
+    margin-top: 14px;
   }
-  .account-story {
-    padding: 24px 32px 20px;
+  .provided-design .fresh-pass-heading > span {
+    font-size: 8px;
+    padding: 4px 10px;
   }
-  .account-story-copy {
-    margin-top: 24px;
+  .provided-design .fresh-pass-heading h1 {
+    font-size: 32px;
+    margin-top: 8px;
   }
-  .account-story h2 {
-    font-size: 54px;
-    margin-block: 17px;
+  .provided-design .fresh-pass-heading > p {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 5px;
+    max-width: 600px;
   }
-  .account-story-copy p {
-    font-size: 13px;
+  .provided-design .fresh-pass-heading > div:last-child {
+    margin-top: 10px;
+    padding: 4px;
   }
-  .account-art {
-    height: 208px;
-  }
-  .account-washer {
-    transform: translateX(-50%) rotate(-9deg) scale(0.87);
-    transform-origin: bottom;
-  }
-  .account-fresh-stamp {
-    width: 88px;
-    height: 88px;
-    font-size: 9px;
-  }
-  .account-fresh-stamp strong {
+  .provided-design .fresh-pass-heading > div:last-child button {
+    padding: 7px 17px;
     font-size: 11px;
   }
-  .account-content {
-    padding-top: 22px;
-    padding-bottom: 20px;
+  .provided-design .fresh-pass-stage {
+    margin-top: 23px;
+    max-width: 1040px;
   }
-  .account-form-wrap {
-    padding-block: 18px;
+  .provided-design .fresh-pass-rotator {
+    height: max(430px, calc(100dvh - 258px));
+    max-height: 610px;
   }
-  .account-content h1 {
-    font-size: 39px;
+  .provided-design .fresh-pass-form-panel {
+    padding: 23px 28px;
+    overflow: visible;
   }
-  .account-creating .account-content h1 {
-    font-size: 34px;
+  .provided-design .fresh-pass-form-panel h2 {
+    font-size: 23px;
   }
-  .account-creating .account-mode-switch {
-    margin-bottom: 12px;
-  }
-  .account-creating .account-intro {
-    margin: 9px 0 15px;
-  }
-  .account-creating .account-field-label {
-    margin-bottom: 5px;
+  .provided-design .fresh-pass-form-panel h2 + p {
     font-size: 11px;
   }
-  .account-creating .account-input {
-    min-height: 43px;
-    padding-inline: 10px;
-    gap: 6px;
+  .provided-design .fresh-pass-form-panel form {
+    margin-top: 15px;
   }
-  .account-creating .account-input > input.form-control {
-    padding-block: 9px;
+  .provided-design .fresh-pass-form-panel input:not([type="checkbox"]),
+  .provided-design .fresh-pass-form-panel select {
     font-size: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-radius: 12px;
   }
-  .account-creating .account-fields {
-    --bs-gutter-y: 10px;
+  .provided-design .fresh-pass-form-panel form > * + * {
+    margin-top: 9px;
   }
-  .account-creating .account-consent {
-    margin-block: 12px;
+  .provided-design .fresh-pass-form-panel button {
+    font-size: 11px;
   }
-  .account-creating .account-switch-prompt {
-    margin-block: 12px;
+  .provided-design .fresh-pass-form-panel button.py-4 {
+    padding-block: 11px;
   }
-  .account-creating .account-security {
+  .provided-design .fresh-pass-form-panel button.py-3\.5 {
+    padding-block: 9px;
+  }
+  .provided-design .fresh-pass-form-panel > button {
+    margin-top: 12px;
+    padding-block: 10px;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto {
     padding-top: 12px;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto > div {
+    padding-top: 10px;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto p {
+    font-size: 8px;
+    margin-top: 7px;
+  }
+  .provided-design .fresh-pass-form-panel > p:last-child {
+    font-size: 8px;
+    margin-top: 9px;
+  }
+  .provided-design .fresh-pass-container > p:last-of-type {
+    margin-top: 12px;
+    font-size: 10px;
+  }
+  .provided-design
+    .fresh-pass-container
+    > div:last-child:not(.fresh-pass-stage) {
+    margin-top: 9px;
+  }
+  .provided-design .fresh-pass-container > div:last-child > span {
+    font-size: 10px;
+  }
+}
+@media (min-width: 992px) and (max-height: 850px) {
+  .provided-design .fresh-pass-heading > span,
+  .provided-design .fresh-pass-heading > p {
+    display: none;
+  }
+  .provided-design .fresh-pass-heading {
+    margin-top: 5px;
+  }
+  .provided-design .fresh-pass-heading h1 {
+    font-size: 27px;
+    margin-top: 0;
+  }
+  .provided-design .fresh-pass-heading > div:last-child {
+    margin-top: 6px;
+  }
+  .provided-design .fresh-pass-rotator {
+    height: 414px;
+  }
+  .provided-design .fresh-pass-stage {
+    margin-top: 18px;
+  }
+  .provided-design .fresh-pass-form-panel {
+    padding: 19px 25px;
+  }
+  .provided-design .fresh-pass-form-panel h2 {
+    font-size: 20px;
+  }
+  .provided-design .fresh-pass-form-panel form {
+    margin-top: 10px;
+  }
+  .provided-design .fresh-pass-form-panel form > * + * {
+    margin-top: 6px;
+  }
+  .provided-design .fresh-pass-form-panel input:not([type="checkbox"]),
+  .provided-design .fresh-pass-form-panel select {
+    padding-block: 7px;
+    font-size: 11px;
+  }
+  .provided-design .fresh-pass-form-panel form > label {
+    padding: 8px;
+    font-size: 10px;
+  }
+  .provided-design .fresh-pass-form-panel > button {
+    margin-top: 8px;
+    padding-block: 8px;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto {
+    padding-top: 8px;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto p {
+    display: none;
+  }
+  .provided-design .fresh-pass-container > p:last-of-type {
+    margin-top: 9px;
+  }
+  .provided-design
+    .fresh-pass-container
+    > div:last-child:not(.fresh-pass-stage) {
+    display: none;
   }
 }
 @media (max-width: 991px) {
-  .account-page {
-    padding: 14px;
+  .provided-design .fresh-pass-rotator {
+    height: 730px;
   }
-  .account-shell {
-    grid-template-columns: 0.78fr 1fr;
-    min-height: calc(100dvh - 28px);
+  .provided-design .fresh-pass-form-panel {
+    padding: 28px;
+    overflow: visible;
   }
-  .account-story {
-    padding: 27px 24px 24px;
-  }
-  .account-story h2 {
-    font-size: 48px;
-  }
-  .account-content {
-    padding: 28px 25px 24px;
-  }
-  .account-content-top {
-    font-size: 8px;
-  }
-  .account-content-top > a {
-    font-size: 10px;
-  }
-  .account-fresh-stamp {
-    right: -8px;
-    width: 85px;
-    height: 85px;
-    font-size: 8px;
-  }
-  .account-fresh-stamp strong {
-    font-size: 10px;
-  }
-  .account-floating-label {
-    left: -5px;
-    font-size: 10px;
-  }
-  .account-story-bottom {
-    flex-direction: column;
-    gap: 5px;
-  }
-  .account-creating .account-fields > div {
-    width: 100%;
+  .provided-design .fresh-pass-stage {
+    max-width: 580px;
   }
 }
-@media (max-width: 639px) {
-  .account-page {
-    padding: 0;
-    background: #ffffff;
-    display: block;
+@media (max-width: 479px) {
+  .provided-design .fresh-pass-container {
+    padding-inline: 12px;
   }
-  .account-shell {
-    display: block;
-    border: 0;
-    border-radius: 0;
-    min-height: 100dvh;
-    box-shadow: none;
+  .provided-design .fresh-pass-form-panel {
+    padding: 28px 24px;
   }
-  .account-story {
-    padding: 21px 24px;
-    min-height: 170px;
+  .provided-design .fresh-pass-form-panel > .mt-auto > div {
+    flex-wrap: wrap;
+    gap: 14px;
   }
-  .account-logo {
-    border-radius: 10px;
-    padding: 5px 10px;
+  .provided-design .fresh-pass-form-panel h2 {
+    font-size: 23px;
   }
-  .account-logo img {
-    width: 115px;
-    height: 33px;
+  .provided-design .fresh-pass-form-panel .grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .account-story-copy {
-    margin-top: 19px;
+  .provided-design .fresh-pass-rotator {
+    height: 900px;
   }
-  .account-overline {
-    font-size: 8px;
-    letter-spacing: 1.2px;
-  }
-  .account-story h2 {
-    font-size: 29px;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin: 13px 0 0;
-  }
-  .account-story h2 br:first-child {
-    display: none;
-  }
-  .account-story h2 br:last-of-type {
-    display: none;
-  }
-  .account-story h2 em::before {
-    content: " ";
-  }
-  .account-story-copy p,
-  .account-story-bottom,
-  .account-art {
-    display: none;
-  }
-  .account-content {
-    padding: 22px 25px 24px;
-  }
-  .account-content-top {
-    font-size: 9px;
-  }
-  .account-content-top > a {
+  .provided-design .fresh-pass-stage > button {
     font-size: 10px;
-  }
-  .account-form-wrap {
-    max-width: 440px;
-    padding-block: 24px 28px;
-  }
-  .account-mode-switch {
-    margin-bottom: 22px;
-  }
-  .account-content h1 {
-    font-size: 40px;
-  }
-  .account-intro {
-    margin-block: 13px 24px;
-    font-size: 12px;
-  }
-  .account-options {
-    font-size: 10px;
-    gap: 8px;
-  }
-  .account-options > button {
-    font-size: 10px;
-  }
-  .account-security {
-    font-size: 9px;
-  }
-  .account-footer {
-    font-size: 9px;
-  }
-  .account-creating .account-fields > div {
-    width: 100%;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .account-page * {
-    transition: none !important;
+  .provided-design .fresh-pass * {
+    animation: none !important;
+    transition-duration: 0s !important;
+  }
+  .provided-design .fresh-pass-rotator {
+    transform: none !important;
+  }
+  .provided-design .fresh-pass-back {
+    transform: none !important;
+  }
+  .provided-design .fresh-pass [inert] {
+    visibility: hidden;
   }
 }
-@media (min-width: 992px) and (max-height: 780px) {
-  .account-story-copy {
-    margin-top: 20px;
+/* Bootstrap spacing utilities are !important; keep the supplied card scoped. */
+.provided-design .fresh-pass-form-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px !important;
+}
+.provided-design .fresh-pass-form-panel form > * {
+  margin-block: 0 !important;
+}
+.provided-design .fresh-pass-form-panel input:not([type="checkbox"]),
+.provided-design .fresh-pass-form-panel select {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+.provided-design .fresh-pass-form-panel form button[type="submit"] {
+  padding-block: 14px !important;
+}
+.provided-design .fresh-pass-form-panel > button {
+  margin-top: 14px !important;
+  padding-block: 12px !important;
+}
+@media (min-width: 1024px) {
+  .provided-design .fresh-pass-back .fresh-pass-form-panel {
+    order: 1 !important;
   }
-  .account-story h2 {
-    font-size: 46px;
-    margin-block: 14px;
-  }
-  .account-story-copy p {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-  .account-art {
-    height: 170px;
-    min-height: 170px;
-  }
-  .account-washer {
-    transform: translateX(-50%) rotate(-9deg) scale(0.73);
-  }
-  .account-content {
-    padding-block: 18px;
-  }
-  .account-form-wrap {
-    padding-block: 15px;
-  }
-  .account-mode-switch {
-    margin-bottom: 16px;
-  }
-  .account-mode-switch > button {
-    padding-block: 9px;
-  }
-  .account-welcome-mark {
-    display: none;
-  }
-  .account-content h1 {
-    font-size: 35px;
-  }
-  .account-intro {
-    margin-block: 10px 18px;
-    font-size: 12px;
-  }
-  .account-fields {
-    --bs-gutter-y: 12px;
-  }
-  .account-field-label {
-    margin-bottom: 6px;
-    font-size: 11px;
-  }
-  .account-input {
-    min-height: 44px;
-  }
-  .account-input > input.form-control {
-    padding-block: 10px;
-  }
-  .account-options {
-    margin-block: 13px 17px;
-  }
-  .account-page .account-submit {
-    min-height: 45px;
-    padding-block: 10px;
-  }
-  .account-switch-prompt {
-    margin-block: 14px;
-  }
-  .account-security {
-    padding-top: 13px;
-  }
-  .account-creating .account-security {
-    display: none;
-  }
-  .account-creating .account-form-wrap {
-    padding-block: 12px;
-  }
-  .account-creating .account-fields {
-    --bs-gutter-y: 8px;
+  .provided-design .fresh-pass-back .fresh-pass-form-panel + div {
+    order: 2 !important;
   }
 }
-@media (min-width: 992px) and (max-height: 640px) {
-  .account-content {
+@media (min-width: 992px) {
+  .provided-design .fresh-pass-form-panel form {
+    gap: 8px;
+    margin-top: 14px !important;
+  }
+  .provided-design .fresh-pass-form-panel input:not([type="checkbox"]),
+  .provided-design .fresh-pass-form-panel select {
+    padding-top: 9px !important;
+    padding-bottom: 9px !important;
+  }
+  .provided-design .fresh-pass-form-panel form button {
+    padding-block: 10px !important;
+  }
+  .provided-design .fresh-pass-form-panel > button {
+    margin-top: 10px !important;
+    padding-block: 9px !important;
+  }
+  .provided-design .fresh-pass-form-panel form > label {
+    padding: 9px !important;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto {
+    padding-top: 10px !important;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto > div {
+    padding-top: 9px !important;
+  }
+}
+@media (min-width: 992px) and (max-height: 850px) {
+  .provided-design .fresh-pass-container {
+    padding-top: 10px !important;
+    padding-bottom: 8px !important;
+  }
+  .provided-design .fresh-pass-stage {
+    margin-top: 16px !important;
+  }
+  .provided-design .fresh-pass-heading > div:last-child {
+    margin-top: 6px !important;
+  }
+  .provided-design .fresh-pass-heading > div:last-child button {
+    padding-block: 6px !important;
+  }
+  .provided-design .fresh-pass-rotator {
+    height: 402px;
+  }
+  .provided-design .fresh-pass-form-panel form {
+    gap: 6px;
+    margin-top: 9px !important;
+  }
+  .provided-design .fresh-pass-form-panel input:not([type="checkbox"]),
+  .provided-design .fresh-pass-form-panel select {
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+  }
+  .provided-design .fresh-pass-form-panel form button {
+    padding-block: 8px !important;
+  }
+  .provided-design .fresh-pass-form-panel > button {
+    padding-block: 7px !important;
+    margin-top: 8px !important;
+  }
+  .provided-design .fresh-pass-form-panel > .mt-auto {
+    display: none;
+  }
+  .provided-design .fresh-pass-form-panel form > label {
+    padding: 6px !important;
+  }
+}
+@media (min-width: 992px) {
+  .provided-design .fresh-pass-back form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 10px;
+  }
+  .provided-design .fresh-pass-back form > :nth-child(-n + 3),
+  .provided-design .fresh-pass-back form > label,
+  .provided-design .fresh-pass-back form > button {
+    grid-column: 1 / -1;
+  }
+  .provided-design .fresh-pass-back form > :nth-child(4),
+  .provided-design .fresh-pass-back form > :nth-child(5) {
+    min-width: 0;
+  }
+  .provided-design .fresh-pass-back form > :nth-child(5) > svg {
+    display: none;
+  }
+  .provided-design .fresh-pass-back form > :nth-child(5) > input {
+    padding-left: 12px;
+  }
+}
+@media (min-width: 992px) and (max-height: 850px) {
+  .provided-design .fresh-pass-back .fresh-pass-form-panel {
     padding-block: 14px;
   }
-  .account-form-wrap {
-    padding-block: 12px;
-  }
-  .account-creating .account-content h1 {
-    font-size: 29px;
-    letter-spacing: -1px;
-  }
-  .account-creating .account-mode-switch {
-    margin-bottom: 10px;
-  }
-  .account-creating .account-intro {
-    margin-block: 8px 13px;
-  }
-}
-
-/* Brand-matched access experience: electric blue, fresh cyan, warm orange. */
-.account-page {
-  background:
-    radial-gradient(ellipse at 10% 0, #bfeaff, transparent 48%),
-    radial-gradient(ellipse at 95% 100%, #ffe3cf, transparent 45%), #edf5ff;
-}
-.account-shell {
-  max-width: 1370px;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 36px;
-  box-shadow: 0 24px 80px #184b8c1a;
-}
-.account-story {
-  background:
-    radial-gradient(ellipse at 0 0, #307cff, transparent 60%),
-    linear-gradient(150deg, #1759ed, #123ba1 80%);
-  padding: 30px 38px 23px;
-}
-.account-story:before {
-  content: "";
-  position: absolute;
-  width: 410px;
-  height: 410px;
-  border: 1px solid #ffffff18;
-  border-radius: 50%;
-  right: -260px;
-  top: -100px;
-  box-shadow:
-    0 0 0 45px #ffffff05,
-    0 0 0 90px #ffffff04;
-}
-.account-logo {
-  border-radius: 19px;
-  padding: 7px 18px;
-  position: relative;
-}
-.account-story-copy {
-  margin-top: 28px;
-}
-.account-story h2 {
-  font-weight: 800;
-  font-size: clamp(42px, 4.5vw, 63px);
-  letter-spacing: -2.8px;
-  line-height: 0.99;
-  margin-block: 20px 16px;
-}
-.account-story h2 em {
-  color: #ffac4c;
-}
-.account-story-copy p {
-  color: #c1d8ff;
-  font-size: 13px;
-}
-.account-overline {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-}
-.account-photo-stage {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  height: 275px;
-  margin: auto auto 10px;
-  flex-shrink: 0;
-}
-.account-photo-halo {
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #82e1ff, #dbe9ff);
-  top: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow:
-    0 0 0 15px #ffffff08,
-    0 0 0 30px #ffffff05;
-}
-.account-lifestyle-photo {
-  width: 230px;
-  height: 230px;
-  border: 5px solid #fff;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: 65% center;
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.account-photo-ticket {
-  position: absolute;
-  bottom: 8px;
-  left: 0;
-  width: 255px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  background: #fffffff0;
-  backdrop-filter: blur(12px);
-  color: #14213d;
-  border: 1px solid white;
-  padding: 13px;
-  border-radius: 19px;
-  box-shadow: 0 14px 30px #062b6330;
-  transform: rotate(-5deg);
-}
-.account-ticket-icon {
-  width: 39px;
-  height: 39px;
-  border-radius: 12px;
-  background: #e3f2ff;
-  display: grid;
-  place-items: center;
-  color: #1964ff;
-  flex-shrink: 0;
-}
-.account-photo-ticket strong {
-  display: block;
-  font-size: 12px;
-}
-.account-photo-ticket small {
-  display: block;
-  font-size: 9px;
-  color: #8194b5;
-  margin-top: 3px;
-}
-.account-photo-ticket > span:last-child {
-  color: #2168ff;
-  margin-left: auto;
-  font-size: 20px;
-}
-.account-photo-seal {
-  position: absolute;
-  top: 4px;
-  right: 14px;
-  border: 5px solid #2055cc;
-  border-radius: 50%;
-  background: #ff9a24;
-  color: white;
-  width: 92px;
-  height: 92px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 8px;
-  letter-spacing: 0.7px;
-  transform: rotate(14deg);
-}
-.account-photo-seal strong {
-  font-size: 9px;
-  margin-top: 3px;
-}
-.account-photo-caption {
-  position: absolute;
-  right: 0;
-  bottom: 48px;
-  font-size: 10px;
-  color: #b6d5ff;
-  line-height: 1.6;
-  transform: rotate(6deg);
-}
-.account-photo-caption b {
-  color: white;
-  font-size: 20px;
-}
-.account-story-bottom {
-  font-size: 8px;
-  letter-spacing: 0.4px;
-  position: relative;
-}
-.account-content {
-  background:
-    radial-gradient(ellipse at 100% 0%, #fff4e8, transparent 40%), #fff;
-}
-.account-content h1 {
-  font-weight: 800;
-  letter-spacing: -1.7px;
-}
-.account-mode-switch {
-  border-radius: 40px;
-  padding: 5px;
-  grid-template-columns: 1fr 1.3fr;
-}
-.account-mode-switch > button {
-  border-radius: 30px;
-}
-.account-mode-switch > button.active {
-  background: #17233d;
-  color: white;
-  box-shadow: 0 5px 10px #17233d1c;
-}
-.account-page .account-submit {
-  border: 0;
-  border-radius: 40px;
-  background: linear-gradient(105deg, #165bff, #00a6ed);
-  box-shadow: 0 7px 20px #1964ff26;
-  padding-inline: 22px;
-}
-.account-submit:hover {
-  background: linear-gradient(105deg, #0949dd, #0092d6);
-}
-.account-welcome-mark {
-  background: #fff0df;
-  color: #ff8b1c;
-  border-radius: 13px;
-  width: 39px;
-  height: 39px;
-  display: grid;
-  place-items: center;
-  font-size: 24px;
-  margin-bottom: 14px;
-}
-.account-security {
-  color: #8396b5;
-}
-@media (min-width: 992px) and (max-height: 780px) {
-  .account-story {
-    padding: 24px 32px 20px;
-  }
-  .account-story-copy {
-    margin-top: 20px;
-  }
-  .account-story h2 {
-    font-size: 46px;
-    margin-block: 14px;
-  }
-  .account-photo-stage {
-    height: 205px;
-    max-width: 370px;
-  }
-  .account-photo-halo {
-    width: 192px;
-    height: 192px;
-  }
-  .account-lifestyle-photo {
-    width: 174px;
-    height: 174px;
-    top: 14px;
-  }
-  .account-photo-seal {
-    width: 76px;
-    height: 76px;
-    right: 12px;
-    font-size: 7px;
-  }
-  .account-photo-seal strong {
-    font-size: 8px;
-  }
-  .account-photo-ticket {
-    width: 231px;
-    bottom: 0;
-    padding: 10px;
-  }
-  .account-photo-caption {
-    bottom: 38px;
-  }
-  .account-photo-caption b {
-    font-size: 17px;
-  }
-  .account-welcome-mark {
+  .provided-design
+    .fresh-pass-back
+    form
+    > :nth-child(4)
+    > div:not(:first-child) {
     display: none;
   }
-}
-@media (max-width: 991px) {
-  .account-shell {
-    grid-template-columns: 0.8fr 1fr;
+  .provided-design .fresh-pass-form-panel form button[type="submit"] {
+    padding-block: 9px !important;
   }
-  .account-story {
-    padding-inline: 24px;
-  }
-  .account-story h2 {
-    font-size: 45px;
-  }
-  .account-photo-stage {
-    height: 245px;
-  }
-  .account-photo-halo {
-    width: 205px;
-    height: 205px;
-  }
-  .account-lifestyle-photo {
-    width: 185px;
-    height: 185px;
-  }
-  .account-photo-ticket {
-    width: 223px;
-  }
-  .account-photo-seal {
-    width: 70px;
-    height: 70px;
-    top: -5px;
-    right: -12px;
-    font-size: 6px;
-  }
-  .account-photo-seal strong {
-    font-size: 7px;
-  }
-  .account-photo-caption {
+  .provided-design .fresh-pass-back .fresh-pass-form-panel > p:last-child {
     display: none;
-  }
-}
-@media (max-width: 639px) {
-  .account-shell {
-    display: block;
-    border-radius: 0;
-  }
-  .account-story {
-    min-height: 175px;
-    padding: 20px 24px;
-  }
-  .account-story-copy {
-    margin-top: 18px;
-  }
-  .account-story h2 {
-    font-size: 30px;
-    line-height: 1.1;
-    letter-spacing: -1.2px;
-    margin-block: 12px 0;
-  }
-  .account-story h2 br {
-    display: none;
-  }
-  .account-story h2 em::before,
-  .account-story h2 em::after {
-    content: " ";
-  }
-  .account-story h2 {
-    max-width: 290px;
-  }
-  .account-photo-stage {
-    display: none;
-  }
-  .account-overline {
-    font-size: 8px;
-  }
-  .account-content h1 {
-    font-size: 38px;
-  }
-}
-@media (min-width: 992px) and (max-height: 640px) {
-  .account-photo-stage {
-    height: 175px;
-    margin-bottom: 2px;
-  }
-  .account-photo-halo {
-    width: 165px;
-    height: 165px;
-  }
-  .account-lifestyle-photo {
-    width: 148px;
-    height: 148px;
-    top: 13px;
-  }
-  .account-story h2 {
-    font-size: 42px;
-  }
-  .account-photo-seal {
-    width: 68px;
-    height: 68px;
-    right: 25px;
   }
 }
