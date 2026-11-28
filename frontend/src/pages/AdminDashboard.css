@@ -1,0 +1,57 @@
+.admin {
+  min-height: 100vh;
+  background: #eef6ff;
+  padding: 24px;
+  font-family: inherit;
+}
+.admin__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172a;
+  color: #fff;
+  padding: 16px 24px;
+  border-radius: 20px;
+}
+.admin__bar h1 {
+  font-size: 20px;
+  margin: 0;
+}
+.admin__bar div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.admin__bar button {
+  background: #fff;
+  color: #dc2626;
+  border: 0;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.admin__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.admin__card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
+}
+.admin__card p {
+  margin: 0;
+  color: #64748b;
+  font-weight: 700;
+  font-size: 13px;
+}
+.admin__card strong {
+  display: block;
+  font-size: 32px;
+  margin-top: 8px;
+  color: #0f172a;
+}

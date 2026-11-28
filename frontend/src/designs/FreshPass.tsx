@@ -813,7 +813,7 @@ export default function Auth({
             onClick={() => setFlipped(!flipped)}
             className="font-black text-slate-800 underline underline-offset-4 decoration-orange-400 decoration-2 hover:text-blue-600 transition"
           >
-            "Flip the Pass"
+            Flip the Pass
           </button>{" "}
         </motion.p>
         <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 mt-5 text-slate-500">
