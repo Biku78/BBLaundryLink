@@ -1,0 +1,31 @@
+/* Admin console — scoped helpers only.
+   Everything else comes from the project's Tailwind utilities, the shared
+   design tokens in designs/design-source.css and integration.css.
+   Keep this file tiny so the admin stays visually identical to the customer app. */
+
+.provided-design .admin-dock-icon {
+  transition: color 0.2s ease;
+}
+
+/* Smooth scrollbars inside the admin's horizontal filter rows */
+.provided-design .admin-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.provided-design .admin-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* The admin renders outside DesignShell on some routes, so make sure the
+   brand fonts still apply. */
+.admin-root {
+  font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
+}
+.admin-root .font-display {
+  font-family: var(--font-display, "Outfit", sans-serif);
+}
+
+/* Recharts-free chart hover affordance */
+.provided-design svg[aria-hidden="true"] {
+  overflow: visible;
+}
